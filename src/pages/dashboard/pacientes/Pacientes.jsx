@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Pacientes.css';
-
+import { ApiConstant } from '../../api/url';
 function Pacientes() {
+    const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();
   const [pacientes, setPacientes] = useState([]);
   const [page, setPage] = useState(1);
@@ -34,7 +35,7 @@ function Pacientes() {
 
     try {
       const params = new URLSearchParams({ page: page.toString(), per_page: perPage.toString() });
-      const response = await fetch(`http://localhost:5000/api/patients/?${params}`, {
+      const response = await fetch(`${apiUrl}api/patients/?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -73,8 +74,8 @@ function Pacientes() {
 
     const token = localStorage.getItem('access_token');
     const url = editingPatient
-      ? `http://localhost:5000/api/patients/${editingPatient.id}`
-      : 'http://localhost:5000/api/patients/';
+      ? `${apiUrl}api/patients/${editingPatient.id}`
+      : `${apiUrl}api/patients/`;
     const method = editingPatient ? 'PUT' : 'POST';
 
     try {
@@ -121,7 +122,7 @@ function Pacientes() {
 
     const token = localStorage.getItem('access_token');
     try {
-      const response = await fetch(`http://localhost:5000/api/patients/${id}`, {
+      const response = await fetch(`${apiUrl}api/patients/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pie, Bar } from 'react-chartjs-2';
+import { ApiConstant } from '../../api/url';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -18,6 +19,7 @@ import './Dashboard.css';
 ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 function Dashboard() {
+  const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -44,7 +46,7 @@ function Dashboard() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/dashboard/summary', {
+      const response = await fetch(`${apiUrl}api/dashboard/summary`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

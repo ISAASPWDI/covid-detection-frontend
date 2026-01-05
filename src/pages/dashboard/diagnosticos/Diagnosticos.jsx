@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Diagnosticos.css';
+import { ApiConstant } from '../../api/url';
 
 function Diagnosticos() {
+  const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();
   const [diagnosticos, setDiagnosticos] = useState([]);
   const [pacientes, setPacientes] = useState([]);
@@ -33,7 +35,7 @@ function Diagnosticos() {
     const token = localStorage.getItem('access_token');
     try {
       const params = new URLSearchParams({ page: '1', per_page: '1000' });
-      const response = await fetch(`http://localhost:5000/api/patients/?${params}`, {
+      const response = await fetch(`${apiUrl}api/patients/?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -69,7 +71,7 @@ function Diagnosticos() {
     if (filters.date_to) params.append('date_to', filters.date_to);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/diagnoses/?${params}`, {
+      const response = await fetch(`${apiUrl}api/diagnoses/?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -123,7 +125,7 @@ function Diagnosticos() {
     formData.append('patient_id', selectedPatient);
 
     try {
-      const response = await fetch('http://localhost:5000/api/diagnoses/predict', {
+      const response = await fetch(`${apiUrl}api/diagnoses/predict`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

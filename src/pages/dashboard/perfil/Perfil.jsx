@@ -34,7 +34,7 @@ function Perfil() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/profile', {
+      const response = await fetch(`${apiUrl}api/auth/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ function Perfil() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/profile', {
+      const response = await fetch(`${apiUrl}api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -129,7 +129,7 @@ function Perfil() {
     const token = localStorage.getItem('access_token');
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/profile', {
+      const response = await fetch(`${apiUrl}api/auth/profile`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

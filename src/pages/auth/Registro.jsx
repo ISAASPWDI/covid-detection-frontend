@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
+import { ApiConstant } from '../../api/url';
 
 function Registro() {
+
+  const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     full_name: '',
@@ -45,7 +48,7 @@ function Registro() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(`${apiUrl}api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

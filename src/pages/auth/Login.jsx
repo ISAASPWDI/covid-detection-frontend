@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
-
+import { ApiConstant } from '../../api/url';
 function Login() {
+
+  const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -34,7 +36,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${apiUrl}api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +75,7 @@ function Login() {
 
       try {
         // Verificar el token
-        const response = await fetch('http://localhost:5000/api/dashboard/summary', {
+        const response = await fetch(`${apiUrl}api/dashboard/summary`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
