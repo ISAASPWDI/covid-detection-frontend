@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Pacientes.css';
-import { ApiConstant } from '../../api/url';
+import { ApiConstant } from '../../../api/url';
 function Pacientes() {
     const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();

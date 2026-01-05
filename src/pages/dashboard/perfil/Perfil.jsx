@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Perfil.css';
+import { ApiConstant } from '../../../api/url';
 
 function Perfil() {
+  const apiUrl = ApiConstant.apiUrl;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

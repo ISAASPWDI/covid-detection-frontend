@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Diagnosticos.css';
-import { ApiConstant } from '../../api/url';
+import { ApiConstant } from '../../../api/url';
 
 function Diagnosticos() {
   const apiUrl = ApiConstant.apiUrl;
